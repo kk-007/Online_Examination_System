@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<body>
+    <script>
+        $.ajax({
+            url:"./api/qbcreate.php",
+            type: "post",
+            data: {
+                "sub":"math",
+                "mcq":"1",
+                "que":{
+                    "0" : {
+                        "que":"2+2 = ",
+                        "op1":"5",
+                        "op2":"4",
+                        "op3":"7",
+                        "op4":"8",
+                        "ans":"2"
+                    },
+                    "1" : {
+                        "que":"2+1 = ",
+                        "op1":"5",
+                        "op2":"4",
+                        "op3":"7",
+                        "op4":"3",
+                        "ans":"4"
+                    }
+                }
+            },
+            success: function(data){
+                console.log(data);
+            },
+            error: function(data){
+                console.log(data);
+            }
+        });
+
+        //THEORI DATA OBJECT
+        // data: {
+        //         "sub":"math",
+        //         "mcq":"0",
+        //         "que":{
+        //             "0" : {
+        //                 "que":"2+2 = ",
+        //                 "marks":"5"
+        //             },
+        //             "1" : {
+        //                 "que":"2+3 = ",
+        //                 "marks":"4"
+        //             }
+        //         }
+        //     }
+
+            //MCQ DATA OBJECT
+        // data: {
+        //         "sub":"math",
+        //         "mcq":"1",
+        //         "que":{
+        //             "0" : {
+        //                 "que":"2+2 = ",
+        //                 "op1":"5",
+        //                 "op2":"4",
+        //                 "op3":"7",
+        //                 "op4":"8",
+        //                 "ans":"2"
+        //             },
+        //             "1" : {
+        //                 "que":"2+1 = ",
+        //                 "op1":"5",
+        //                 "op2":"4",
+        //                 "op3":"7",
+        //                 "op4":"3",
+        //                 "ans":"4"
+        //             }
+        //         }
+        //     }
+    </script>
+</body>
+</html>
