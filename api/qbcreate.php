@@ -1,11 +1,16 @@
 <?php
     require ('connection.php');
+    session_start();
     $sub = $_POST["sub"];
     $type = $_POST["mcq"];
     $questions = $_POST["que"];
     $count = 0;
 
-    $sql_c = "SELECT `qid` FROM `mcquestion`";
+    if($type == 0){
+        $sql_c = "SELECT * FROM `thquestion`";
+    }else{
+        $sql_c = "SELECT * FROM `mcquestion`";
+    }
 
     $result = $con->query($sql_c);
     $before = 0;
@@ -23,16 +28,16 @@
         $result = mysqli_query($con,$sql);
         $count++;
     }
+    $result = null;
     $result = $con->query($sql_c);
     while($row = $result->fetch_assoc()) {
         $after = $row["qid"];
     }
     for($i = $before+1;$i<$after;$i++){
-        $op = $i.',';
+        $op = $op.$i.',';
     }
     $op = $op.$after;
-    //session value for tid
-    $sqlfinal = "INSERT INTO questionbank VALUES('','7','".$sub."','".$op."','".$type."')";
+    $sqlfinal = "INSERT INTO questionbank VALUES('','".$_SESSION['tid']."','".$sub."','".$op."','".$type."')";
     $result = mysqli_query($con,$sqlfinal);
 
     echo json_encode($count." Question added successfully");
