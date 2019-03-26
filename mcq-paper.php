@@ -67,6 +67,7 @@
                     result++;
                 }
             }
+            alert("Your Result is : " + result);
             window.location.href = "./api/add_result.php?marks="+result;
         }
     </script>

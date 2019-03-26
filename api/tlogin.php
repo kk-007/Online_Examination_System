@@ -9,6 +9,7 @@
     $flag=0;
     $backup = null;
     $i=0;
+    $tname = null;
     while($row = $result->fetch_assoc()) {
         $backup[$i] = $row;
         $i++;
@@ -16,6 +17,7 @@
         $t_pass = $row['pass'];
         if($mail == $t_mail && $pass == $t_pass){
             $tid = $row['tid'];
+            $tname = $row["name"];
             $flag=1;
             break;
         }
@@ -30,6 +32,7 @@
     $_SESSION["st"] = 1;
     $_SESSION["tid"] = $tid;
     $_SESSION["tdata"] = $backup;
+    $_SESSION["name"] = $tname;
 
     $res["status"] = $flag;
     $res["tid"] = $tid;
