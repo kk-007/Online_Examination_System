@@ -23,7 +23,7 @@
                 <a class="nav-link user-name" href="#"></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link user-logout" href="#">Logout</a>
+                <div class="user-logout"><a class="nav-link " href="#">Logout</a></div>
             </li>
             </ul>
         </div>

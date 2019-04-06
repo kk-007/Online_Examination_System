@@ -1,3 +1,10 @@
+<?php
+    if(isset($_GET["logout"])){
+        session_start();
+        $_SESSION["sid"] = null;
+        header('location:./');
+    }
+?>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -21,9 +28,9 @@
             <li class="nav-item">
                 <a class="nav-link user-name" href="#"></a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link user-logout" href="#">Logout</a>
-            </li>
+            <form>
+                    <button class="user-logout nav-link btn btn-primary" type="submit" name="logout">Logout</button>
+                </form>
             </ul>
         </div>
     </nav>

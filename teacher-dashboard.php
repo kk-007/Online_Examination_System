@@ -1,3 +1,10 @@
+<?php
+    if(isset($_GET["logout"])){
+        session_start();
+        $_SESSION["tid"] = null;
+        header('location:./');
+    }
+?>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -22,7 +29,12 @@
                 <a class="nav-link user-name" href="./genrate-the-paper.php">Generate Theory Paper</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link user-logout" href="#">Logout</a>
+                <a class="nav-link user-name" href="./display-result.php">MCQ Exam Result</a>
+            </li>
+            <li class="nav-item">
+                <form>
+                    <button class="user-logout nav-link btn btn-primary" type="submit" name="logout">Logout</button>
+                </form>
             </li>
             </ul>
         </div>

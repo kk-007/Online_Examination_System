@@ -1,9 +1,11 @@
 <?php
+    session_start();
+    error_reporting(0);
+
     $id = explode(",",$_GET["id"]);
     $marks = $_GET["marks"];
     $ans = null;
 
-    session_start();
     require ('./api/connection.php');
     $sql = "SELECT * FROM mcquestion";
     $result = $con->query($sql);
@@ -29,6 +31,9 @@
 </head>
 <body>
     <div class="container">
+    <div class="jumbotron text-center">
+        <h1>MCQ Exam</h1>
+    </div>
         <div class="card-columns past">
             <?php
             shuffle($res);

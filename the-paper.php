@@ -33,18 +33,18 @@
             <?php
             for($i=0;$i<$_GET["count"];$i++){
                 shuffle($res);
-                echo '<div class="text-center"><p class="card-text"><h2>PAPER'.$i.'</h2></p></div>';
+                echo '<div class="text-center"><p class="card-text"><h2>PAPER'.($i+1).'</h2></p></div>
+                <div class="card bg-success que'.$i.'" style="padding:20px;">';
                 for($j=0;$j<$_GET["qcount"];$j++){
                     // echo $res[$j]["que"];
                     // echo $res[$j]["marks"];
                     // echo "<br>";
-                    $lala = '<div class="card bg-success que'.$i.'">
-                <div class="card-body">
+                    $lala = '<div class="card-body">
                     <p class="card-text que">'.$res[$j]["que"].'  <b>['.$res[$j]["marks"].']</b></p>
-                </div>
-            </div>';
-            echo $lala;
+                </div>';
+                echo $lala;
                 }
+                echo "</div>";
             }
             ?>
         </div>

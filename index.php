@@ -1,10 +1,10 @@
 <?php
-    // session_start();
-    // if(isset($_SESSION["tid"])){
-    //     header("location:./teacher-dashboard.php");
-    // }elseif(isset($_SESSION["sid"])){
-    //     header("location:./student-dashboard.php");
-    // }
+    session_start();
+    if(isset($_SESSION["tid"])){
+        header("location:./teacher-dashboard.php");
+    }elseif(isset($_SESSION["sid"])){
+        header("location:./student-dashboard.php");
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
