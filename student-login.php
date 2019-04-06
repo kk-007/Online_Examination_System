@@ -58,12 +58,12 @@
             var d = new Date();
             d.setTime(d.getTime() + (7*24*60*60*1000));
             var expires = "expires="+ d.toUTCString();
-            document.cookie = "uid" + "=" + id + ";" + expires + ";path=/";
-            document.cookie = "pass" + "=" + pass + ";" + expires + ";path=/";
+            document.cookie = "suid" + "=" + id + ";" + expires + ";path=/";
+            document.cookie = "spass" + "=" + pass + ";" + expires + ";path=/";
         }
         $(document).ready(function(){
-            $('.uid').val(getCookie("uid"));
-            $('.pass').val(getCookie("pass"));
+            $('.uid').val(getCookie("suid"));
+            $('.pass').val(getCookie("spass"));
             $('.register').on('click',()=>{
                 window.location.href = "./student-register.html";
             });

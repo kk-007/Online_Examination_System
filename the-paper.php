@@ -29,6 +29,9 @@
 </head>
 <body>
     <div class="container">
+    <div class="jumbotron text-center">
+        <h1>Theory Papers</h1>
+    </div>
         <div class="card-columns past">
             <?php
             for($i=0;$i<$_GET["count"];$i++){
