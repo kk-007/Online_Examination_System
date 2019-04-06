@@ -31,19 +31,44 @@
             <div class="checkbox">
                 <label><input type="checkbox" name="remember"> Remember me</label>
             </div>
-            <button type="submit" class="btn btn-default btn-submit">Submit</button>
+            <button type="submit" class="btn btn-primary btn-submit">Submit</button>
         </div>
         <div class="msg"></div>
         <center>
-            <button class="btn btn-primary register">Register</button>
+            <button class="btn btn-primary register btn-primary">Register</button>
         </center>
     </div>
     <script>
+        function getCookie(cname) {
+            var name = cname + "=";
+            var decodedCookie = decodeURIComponent(document.cookie);
+            var ca = decodedCookie.split(';');
+            for(var i = 0; i <ca.length; i++) {
+                var c = ca[i];
+                while (c.charAt(0) == ' ') {
+                c = c.substring(1);
+                }
+                if (c.indexOf(name) == 0) {
+                return c.substring(name.length, c.length);
+                }
+            }
+            return "";
+        }
         $(document).ready(function(){
+            $('.uid').val(getCookie("uid"));
+            $('.pass').val(getCookie("pass"));
             $('.register').on('click',()=>{
                 window.location.href = "./student-register.html";
             });
             $('.btn-submit').on('click',function(){
+                var checked = $('input[type="checkbox"]').prop("checked");
+                if(checked){
+                    var d = new Date();
+                    d.setTime(d.getTime() + (7*24*60*60*1000));
+                    var expires = "expires="+ d.toUTCString();
+                    document.cookie = "uid" + "=" + $('.uid').val() + ";" + expires + ";path=/";
+                    document.cookie = "pass" + "=" + $('.pass').val() + ";" + expires + ";path=/";
+                }
                 $.ajax({
                     url:"./api/slogin.php",
                     type: "get",
@@ -54,13 +79,6 @@
                     success: function(data){
                         var res = JSON.parse(data);
                         if(res.status){
-                            <?php
-                                session_start();
-                                $_SESSION["st"] = 0;
-                                $_SESSION["sid"] = "test";
-                            ?>
-                            // $('.msg').html('');
-                            // $('.msg').html("<div class=\"alert alert-primary\" role=\"alert\">Login Successfully</div>");
                             window.location.href = "./student-dashboard.php";
                         }else{
                             $('.msg').html('');
