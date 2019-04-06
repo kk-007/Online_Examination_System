@@ -54,6 +54,13 @@
             }
             return "";
         }
+        function setCookie(id,pass){
+            var d = new Date();
+            d.setTime(d.getTime() + (7*24*60*60*1000));
+            var expires = "expires="+ d.toUTCString();
+            document.cookie = "uid" + "=" + id + ";" + expires + ";path=/";
+            document.cookie = "pass" + "=" + pass + ";" + expires + ";path=/";
+        }
         $(document).ready(function(){
             $('.uid').val(getCookie("uid"));
             $('.pass').val(getCookie("pass"));
@@ -63,11 +70,13 @@
             $('.btn-submit').on('click',function(){
                 var checked = $('input[type="checkbox"]').prop("checked");
                 if(checked){
-                    var d = new Date();
-                    d.setTime(d.getTime() + (7*24*60*60*1000));
-                    var expires = "expires="+ d.toUTCString();
-                    document.cookie = "uid" + "=" + $('.uid').val() + ";" + expires + ";path=/";
-                    document.cookie = "pass" + "=" + $('.pass').val() + ";" + expires + ";path=/";
+                    setCookie($('.uid').val(),$('.pass').val());
+                }else{
+                    if(confirm("You want to Save Password")){
+                        setCookie($('.uid').val(),$('.pass').val());
+                    }else{
+                        setCookie("","");
+                    }
                 }
                 $.ajax({
                     url:"./api/tlogin.php",
